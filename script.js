@@ -2,8 +2,8 @@ const form = document.getElementById('updateForm');
 const result = document.getElementById('result');
 
 // Ganti ini dengan data repo kamu
-const token = 'ghp_xxXTOKENANDAxx'; // !!! JANGAN taruh di file publik saat produksi
-const repo = 'NAMAMU/live-porprov';
+const token = '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'; // !!! JANGAN taruh di file publik saat produksi
+const repo = 'zafrib/live-porprov';
 const filename = 'live-update.json';
 const apiURL = `https://api.github.com/repos/${repo}/contents/${filename}`;
 
