@@ -1,8 +1,8 @@
 {
   "klasemen_medali": [
-    { "no": 1, "kota_kabupaten": "KOTA SURABAYA", "emas": 31, "perak": 20, "perunggu": 25, "poin": 189 },
-    { "no": 2, "kota_kabupaten": "KOTA MALANG", "emas": 29, "perak": 20, "perunggu": 13, "poin": 169 },
-    { "no": 3, "kota_kabupaten": "KABUPATEN SIDOARJO", "emas": 18, "perak": 17, "perunggu": 24, "poin": 130 },
+    { "no": 1, "kota_kabupaten": "KOTA SURABAYA", "emas": 41, "perak": 24, "perunggu": 28, "poin": 240 },
+    { "no": 2, "kota_kabupaten": "KOTA MALANG", "emas": 31, "perak": 21, "perunggu": 17, "poin": 183 },
+    { "no": 3, "kota_kabupaten": "KABUPATEN SIDOARJO", "emas": 21, "perak": 20, "perunggu": 28, "poin": 152 },
     { "no": 4, "kota_kabupaten": "KABUPATEN KEDIRI", "emas": 9, "perak": 8, "perunggu": 7, "poin": 59 },
     { "no": 5, "kota_kabupaten": "KABUPATEN MALANG", "emas": 9, "perak": 5, "perunggu": 8, "poin": 54 },
     { "no": 6, "kota_kabupaten": "KABUPATEN MOJOKERTO", "emas": 4, "perak": 9, "perunggu": 15, "poin": 49 },
@@ -39,5 +39,5 @@
     { "no": 37, "kota_kabupaten": "KABUPATEN PONOROGO", "emas": 0, "perak": 0, "perunggu": 0, "poin": 0 },
     { "no": 38, "kota_kabupaten": "KABUPATEN SUMENEP", "emas": 0, "perak": 0, "perunggu": 0, "poin": 0 }
   ],
-  "total": { "emas": 163, "perak": 162, "perunggu": 211 }
+  "total": { "emas": 178, "perak": 170, "perunggu": 222 }
 }
