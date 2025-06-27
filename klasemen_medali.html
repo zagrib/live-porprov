@@ -2,61 +2,129 @@
 <html>
 <head>
 <title>Klasemen Medali PORPROV JATIM IX 2025</title>
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <style>
   body {
-    font-family: sans-serif;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 20px;
+    background-color: #f4f7f6;
+    color: #333;
   }
-  .table-container {
-    overflow-x: auto;
+
+  h2 {
+    text-align: center;
+    color: #2c3e50;
+    margin-bottom: 25px;
   }
+
+  .table-wrapper {
+    max-height: 400px; /* Tinggi maksimum tabel sekitar 400px */
+    overflow-y: auto;  /* Mengaktifkan scrolling vertikal */
+    border: 1px solid #dfe6e9;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    background-color: #ffffff;
+  }
+
   table {
-    border-collapse: collapse;
     width: 100%;
-    border: 1px solid #ddd;
+    border-collapse: collapse;
+    table-layout: fixed; /* Memastikan lebar kolom konsisten */
   }
+
   th, td {
-    border: 1px solid #ddd;
-    padding: 8px;
+    padding: 12px 15px;
     text-align: left;
+    border-bottom: 1px solid #dfe6e9;
+    word-wrap: break-word; /* Memastikan teks panjang tidak merusak layout */
   }
+
   th {
-    background-color: #f2f2f2;
+    background-color: #3498db; /* Warna biru modern untuk header */
+    color: #ffffff;
+    font-weight: 600;
+    position: sticky; /* Menjaga header tetap di atas saat di-scroll */
+    top: 0;
+    z-index: 10; /* Memastikan header di atas konten yang di-scroll */
   }
+
   tr:nth-child(even) {
-    background-color: #f9f9f9;
+    background-color: #f8fcfd; /* Zebra stripping ringan */
+  }
+
+  tr:hover {
+    background-color: #eaf6fd; /* Efek hover */
+  }
+
+  /* Responsive adjustments for smaller screens */
+  @media screen and (max-width: 600px) {
+    table {
+      font-size: 14px;
+    }
+    th, td {
+      padding: 10px 8px;
+    }
+    /* Optional: Stack cells for extremely small screens if table-layout fixed is too restrictive */
+    /*
+    thead {
+      display: none;
+    }
+    tr {
+      margin-bottom: 10px;
+      display: block;
+      border: 1px solid #dfe6e9;
+      border-radius: 5px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    }
+    td {
+      display: block;
+      text-align: right;
+      padding-left: 50%;
+      position: relative;
+    }
+    td::before {
+      content: attr(data-label);
+      position: absolute;
+      left: 6px;
+      width: 45%;
+      padding-right: 10px;
+      white-space: nowrap;
+      text-align: left;
+      font-weight: bold;
+      color: #555;
+    }
+    */
   }
 </style>
 </head>
 <body>
 
   <h2>Klasemen Medali PORPROV JATIM IX 2025</h2>
-  <table>
-    <thead>
-      <tr>
-        <th>No</th>
-        <th>Kota/Kabupaten</th>
-        <th>Emas</th>
-        <th>Perak</th>
-        <th>Perunggu</th>
-        <th>Poin</th>
-      </tr>
-    </thead>
-    <tbody id="medalTableBody">
-    </tbody>
-  </table>
-  <p>Total Emas: <span id="totalEmas"></span> | Total Perak: <span id="totalPerak"></span> | Total Perunggu: <span id="totalPerunggu"></span> | Total Poin: <span id="totalPoin"></span></p>
+
+  <div class="table-wrapper">
+    <table>
+      <thead>
+        <tr>
+          <th style="width: 10%;">No</th>
+          <th style="width: 40%;">Kota/Kabupaten</th>
+          <th style="width: 10%;">Emas</th>
+          <th style="width: 10%;">Perak</th>
+          <th style="width: 10%;">Perunggu</th>
+          <th style="width: 10%;">Poin</th>
+        </tr>
+      </thead>
+      <tbody id="medalTableBody">
+      </tbody>
+    </table>
+  </div>
 
 <script>
   async function loadData() {
     try {
+      // Menggunakan URL GitHub Pages untuk medali.json
       const response = await fetch('https://zagrib.github.io/live-porprov/medali.json');
       const data = await response.json();
       const medalTableBody = document.getElementById('medalTableBody');
-      const totalEmasSpan = document.getElementById('totalEmas');
-      const totalPerakSpan = document.getElementById('totalPerak');
-      const totalPerungguSpan = document.getElementById('totalPerunggu');
-      const totalPoinSpan = document.getElementById('totalPoin');
 
       data.klasemen_medali.forEach(item => {
         const row = medalTableBody.insertRow();
@@ -66,16 +134,29 @@
         row.insertCell().textContent = item.perak;
         row.insertCell().textContent = item.perunggu;
         row.insertCell().textContent = item.poin;
+        /* Jika ingin menggunakan data-label untuk responsive stacking (opsional) */
+        // row.cells[0].setAttribute('data-label', 'No');
+        // row.cells[1].setAttribute('data-label', 'Kota/Kabupaten');
+        // row.cells[2].setAttribute('data-label', 'Emas');
+        // row.cells[3].setAttribute('data-label', 'Perak');
+        // row.cells[4].setAttribute('data-label', 'Perunggu');
+        // row.cells[5].setAttribute('data-label', 'Poin');
       });
 
-      totalEmasSpan.textContent = data.total.emas;
-      totalPerakSpan.textContent = data.total.perak;
-      totalPerungguSpan.textContent = data.total.perunggu;
-      totalPoinSpan.textContent = data.total.poin;
+      // Menghilangkan bagian total di bawah, jika sebelumnya ada
+      // const totalEmasSpan = document.getElementById('totalEmas');
+      // const totalPerakSpan = document.getElementById('totalPerak');
+      // const totalPerungguSpan = document.getElementById('totalPerunggu');
+      // const totalPoinSpan = document.getElementById('totalPoin');
+      // totalEmasSpan.textContent = data.total.emas;
+      // totalPerakSpan.textContent = data.total.perak;
+      // totalPerungguSpan.textContent = data.total.perunggu;
+      // totalPoinSpan.textContent = data.total.poin; /* Jika ingin menampilkan total poin lagi */
 
     } catch (error) {
       console.error('Gagal memuat data JSON:', error);
-      medalTableBody.innerHTML = '<tr><td colspan="6">Gagal memuat data.</td></tr>';
+      const medalTableBody = document.getElementById('medalTableBody');
+      medalTableBody.innerHTML = '<tr><td colspan="6">Gagal memuat data. Mohon coba lagi nanti.</td></tr>';
     }
   }
 
