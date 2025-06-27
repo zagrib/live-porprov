@@ -6,7 +6,7 @@
 <style>
   body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    margin: 20px;
+    margin: 10px;
     background-color: #f4f7f6;
     color: #333;
   }
@@ -33,7 +33,7 @@
   }
 
   th, td {
-    padding: 12px 15px;
+    padding: 3px 5px;
     text-align: left;
     border-bottom: 1px solid #dfe6e9;
     word-wrap: break-word; /* Memastikan teks panjang tidak merusak layout */
@@ -62,7 +62,7 @@
       font-size: 14px;
     }
     th, td {
-      padding: 10px 8px;
+      padding: 3px 3px;
     }
     /* Optional: Stack cells for extremely small screens if table-layout fixed is too restrictive */
     /*
@@ -100,17 +100,53 @@
 <body>
 
   <h2>Klasemen Medali PORPROV JATIM IX 2025</h2>
+<?php
 
+// Menampilkan tanggal dalam format Hari, DD Bulan YYYY (misal: Friday, 27 Juni 2025)
+echo "Tanggal saat ini: " . date("l, d F Y");
+
+// Anda juga bisa menampilkan format lain jika diperlukan:
+echo "<br>";
+
+// Hanya tanggal (DD)
+echo "Tanggal: " . date("d");
+
+echo "<br>";
+
+// Hanya bulan (Nama Bulan)
+echo "Bulan: " . date("F");
+
+echo "<br>";
+
+// Hanya tahun (YYYY)
+echo "Tahun: " . date("Y");
+
+echo "<br>";
+
+// Format numerik lengkap (DD-MM-YYYY)
+echo "Tanggal (numerik): " . date("d-m-Y");
+
+echo "<br>";
+
+// Format dengan jam, menit, detik
+echo "Waktu lengkap: " . date("d-m-Y H:i:s");
+
+// Mengatur zona waktu (sangat disarankan untuk akurasi waktu)
+date_default_timezone_set('Asia/Jakarta'); // Mengatur ke zona waktu WIB
+echo "<br>";
+echo "Waktu lengkap (dengan zona waktu WIB): " . date("d-m-Y H:i:s");
+
+?>
   <div class="table-wrapper">
     <table>
       <thead>
         <tr>
-          <th style="width: 10%;">No</th>
-          <th style="width: 40%;">Kota/Kabupaten</th>
-          <th style="width: 10%;">Emas</th>
-          <th style="width: 10%;">Perak</th>
-          <th style="width: 10%;">Perunggu</th>
-          <th style="width: 10%;">Poin</th>
+          <th style="width: 5%;">No</th>
+          <th style="width: 30%;">Kota/Kabupaten</th>
+          <th style="width: 20%;">Emas</th>
+          <th style="width: 20%;">Perak</th>
+          <th style="width: 20%;">Perunggu</th>
+          <th style="width: 20%;">Poin</th>
         </tr>
       </thead>
       <tbody id="medalTableBody">
