@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Klasemen Medali PORPROV JATIM IX 2025</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+  body {
+    font-family: sans-serif;
+  }
+  .table-container {
+    overflow-x: auto;
+  }
+  table {
+    border-collapse: collapse;
+    width: 100%;
+    border: 1px solid #ddd;
+  }
+  th, td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+  }
+  th {
+    background-color: #f2f2f2;
+  }
+  tr:nth-child(even) {
+    background-color: #f9f9f9;
+  }
+</style>
+</head>
+<body>
+
+  <h2>Klasemen Medali PORPROV JATIM IX 2025</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>No</th>
+        <th>Kota/Kabupaten</th>
+        <th>Emas</th>
+        <th>Perak</th>
+        <th>Perunggu</th>
+        <th>Poin</th>
+      </tr>
+    </thead>
+    <tbody id="medalTableBody">
+    </tbody>
+  </table>
+  <p>Total Emas: <span id="totalEmas"></span> | Total Perak: <span id="totalPerak"></span> | Total Perunggu: <span id="totalPerunggu"></span> | Total Poin: <span id="totalPoin"></span></p>
+
+<script>
+  async function loadData() {
+    try {
+      const response = await fetch('https://zagrib.github.io/live-porprov/medali.json');
+      const data = await response.json();
+      const medalTableBody = document.getElementById('medalTableBody');
+      const totalEmasSpan = document.getElementById('totalEmas');
+      const totalPerakSpan = document.getElementById('totalPerak');
+      const totalPerungguSpan = document.getElementById('totalPerunggu');
+      const totalPoinSpan = document.getElementById('totalPoin');
+
+      data.klasemen_medali.forEach(item => {
+        const row = medalTableBody.insertRow();
+        row.insertCell().textContent = item.no;
+        row.insertCell().textContent = item.kota_kabupaten;
+        row.insertCell().textContent = item.emas;
+        row.insertCell().textContent = item.perak;
+        row.insertCell().textContent = item.perunggu;
+        row.insertCell().textContent = item.poin;
+      });
+
+      totalEmasSpan.textContent = data.total.emas;
+      totalPerakSpan.textContent = data.total.perak;
+      totalPerungguSpan.textContent = data.total.perunggu;
+      totalPoinSpan.textContent = data.total.poin;
+
+    } catch (error) {
+      console.error('Gagal memuat data JSON:', error);
+      medalTableBody.innerHTML = '<tr><td colspan="6">Gagal memuat data.</td></tr>';
+    }
+  }
+
+  loadData();
+</script>
+</body>
+</html>
